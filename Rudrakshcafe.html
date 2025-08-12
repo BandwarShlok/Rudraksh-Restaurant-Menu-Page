@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rudraksh Family Restaurant Menu</title>
+    <link rel="icon" type="image/x-icon" href="Restraunt logo.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image:url(Menu\ background\ 1.png) ;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .menu-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .restaurant-name {
+            font-size: 45px;
+            margin-bottom: 30px;
+            color: #ffd700;
+            text-shadow: 2px 2px 8px #000;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        select {
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+
+        .menu-section {
+            margin-bottom: 40px;
+        }
+
+        .menu-section h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 5px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 10px 0;
+            padding: 15px 20px;
+            border-radius: 12px;
+            transition: background 0.3s, transform 0.3s;
+            font-size: 20px;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.02);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu-container">
+        <h1 class="restaurant-name" id="restaurant-name">Rudraksh Family Restaurant</h1>
+
+        <!-- Language Selector -->
+        <label for="language">Select Language:</label>
+        <br><br>
+        <select id="language" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="mr">Marathi</option>
+        </select>
+
+        <!-- Starters -->
+        <section class="menu-section">
+            <h2 id="starters-heading">🌱 Starters</h2>
+            <div class="menu-item" id="starter1"></div>
+            <div class="menu-item" id="starter2"></div>
+            <div class="menu-item" id="starter3"></div>
+        </section>
+
+        <!-- Fast Food -->
+        <section class="menu-section">
+            <h2 id="fastfood-heading">🍕 Fast Food</h2>
+            <div class="menu-item" id="fast1"></div>
+            <div class="menu-item" id="fast2"></div>
+            <div class="menu-item" id="fast3"></div>
+        </section>
+
+        <!-- Beverages -->
+        <section class="menu-section">
+            <h2 id="beverage-heading">🥤 Beverages</h2>
+            <div class="menu-item" id="beverage1"></div>
+            <div class="menu-item" id="beverage2"></div>
+            <div class="menu-item" id="beverage3"></div>
+        </section>
+    </div>
+
+    <script>
+        // Menu translations
+        const menu = {
+            en: {
+                restaurant: "Rudraksh Family Restaurant",
+                starters: "🌱 Starters",
+                fastfood: "🍕 Fast Food",
+                beverages: "🥤 Beverages",
+                items: [
+                    ["Paneer Tikka", "₹180"],
+                    ["Veg Spring Roll", "₹120"],
+                    ["Chilli Mushroom", "₹150"],
+                    ["Cheese Burst Pizza", "₹220"],
+                    ["Veg Burger", "₹90"],
+                    ["Masala Fries", "₹70"],
+                    ["Cold Coffee", "₹80"],
+                    ["Rose Milk", "₹60"],
+                    ["Lemon Soda", "₹40"]
+                ]
+            },
+            hi: {
+                restaurant: "रुद्राक्ष फैमिली रेस्टोरेंट",
+                starters: "🌱 स्टार्टर",
+                fastfood: "🍕 फास्ट फूड",
+                beverages: "🥤 पेय पदार्थ",
+                items: [
+                    ["पनीर टिक्का", "₹180"],
+                    ["वेज स्प्रिंग रोल", "₹120"],
+                    ["चिली मशरूम", "₹150"],
+                    ["चीज़ बर्स्ट पिज़्ज़ा", "₹220"],
+                    ["वेज बर्गर", "₹90"],
+                    ["मसाला फ्राइज", "₹70"],
+                    ["कोल्ड कॉफी", "₹80"],
+                    ["रोज़ मिल्क", "₹60"],
+                    ["नींबू सोडा", "₹40"]
+                ]
+            },
+            mr: {
+                restaurant: "रुद्राक्ष फॅमिली रेस्टॉरंट",
+                starters: "🌱 स्टार्टर",
+                fastfood: "🍕 फास्ट फूड",
+                beverages: "🥤 पेय",
+                items: [
+                    ["पनीर टिक्का", "₹180"],
+                    ["व्हेज स्प्रिंग रोल", "₹120"],
+                    ["चिली मशरूम", "₹150"],
+                    ["चीज बर्स्ट पिझ्झा", "₹220"],
+                    ["व्हेज बर्गर", "₹90"],
+                    ["मसाला फ्राईज", "₹70"],
+                    ["कोल्ड कॉफी", "₹80"],
+                    ["गुलाब मिल्क", "₹60"],
+                    ["लिंबू सोडा", "₹40"]
+                ]
+            }
+        };
+
+        function changeLanguage() {
+            const lang = document.getElementById('language').value;
+            const data = menu[lang];
+
+            // Update headings
+            document.getElementById('restaurant-name').innerText = data.restaurant;
+            document.getElementById('starters-heading').innerText = data.starters;
+            document.getElementById('fastfood-heading').innerText = data.fastfood;
+            document.getElementById('beverage-heading').innerText = data.beverages;
+
+            // Update items
+            document.getElementById('starter1').innerHTML = `<span>${data.items[0][0]}</span><span>${data.items[0][1]}</span>`;
+            document.getElementById('starter2').innerHTML = `<span>${data.items[1][0]}</span><span>${data.items[1][1]}</span>`;
+            document.getElementById('starter3').innerHTML = `<span>${data.items[2][0]}</span><span>${data.items[2][1]}</span>`;
+
+            document.getElementById('fast1').innerHTML = `<span>${data.items[3][0]}</span><span>${data.items[3][1]}</span>`;
+            document.getElementById('fast2').innerHTML = `<span>${data.items[4][0]}</span><span>${data.items[4][1]}</span>`;
+            document.getElementById('fast3').innerHTML = `<span>${data.items[5][0]}</span><span>${data.items[5][1]}</span>`;
+
+            document.getElementById('beverage1').innerHTML = `<span>${data.items[6][0]}</span><span>${data.items[6][1]}</span>`;
+            document.getElementById('beverage2').innerHTML = `<span>${data.items[7][0]}</span><span>${data.items[7][1]}</span>`;
+            document.getElementById('beverage3').innerHTML = `<span>${data.items[8][0]}</span><span>${data.items[8][1]}</span>`;
+        }
+
+        // Load English by default
+        window.onload = changeLanguage;
+    </script>
+
+</body>
+
+</html>
